@@ -4,14 +4,16 @@ import './App.css';
 import NavBar from './components/layout/Navbar'
 import Users from './components/users/Users'
 
-export default class App extends Component {
+class App extends Component {
   state = {
+    users: [],
     loading: false
   };
-  componentDidMount() {
-    this.setState({ loading: true })
-    axios.get('https://api.github.com/users').then(res => this.setState({ users: res.data }))
-    this.setState({ loading: false })
+
+  async componentDidMount() {
+    this.setState({ loading: true });
+    const res = await axios.get('https://api.github.com/users');
+    this.setState({ users: res.data, loading: false });
   }
 
   render() {
@@ -19,10 +21,11 @@ export default class App extends Component {
       <div className='App'>
         <NavBar />
         <div className="container">
-          <Users />
+          <Users {...this.state} />
         </div>
       </div>
     )
   }
 }
 
+export default App;
