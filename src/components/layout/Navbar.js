@@ -14,7 +14,7 @@ const Navbar = ({ icon, title }) => {
 
 Navbar.defaultProps = {         //default props for func component
     title: 'Github Finder',
-    icon: 'fas fa-github'
+    icon: 'fab fa-github'
 };
 
 Navbar.propTypes = {            //propTypes for func component
